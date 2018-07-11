@@ -12,8 +12,7 @@ using (new Window("src image", src))<br>
 ## 3.保存图片
 > Cv2.ImWrite("lenna1.png", dst);//和exe在同一个文件夹下
 ## 3.绘制图片
-<pre><code>
-  //文字
+<pre><code>  //文字
   Cv2.PutText(src,                                      //目标图像
                         "lenna",                        //字符串
                         new Point(0,80),                //位置，注意这是字符串左下角的位置
