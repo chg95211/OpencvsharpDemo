@@ -1,4 +1,5 @@
 ﻿using OpenCvSharp;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,14 +21,31 @@ namespace OpencvsharpDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Mat src = new Mat("lenna.png", ImreadModes.GrayScale);
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "请选择文件夹";
+            dialog.Filter = "所有文件(*.*)|*.*";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                openfile(dialog.FileName);
+            }
+        }
+
+        private void openfile(string fileName)
+        {
+            Mat src = new Mat(fileName, ImreadModes.GrayScale);
             Mat dst = new Mat();
 
             Cv2.Canny(src, dst, 50, 200);
-            using (new Window("src image", src))
+            pictureBox1.Image = src.ToBitmap();
+            //using (new Window("src image", src))
             using (new Window("dst image", dst))
             {
-                Cv2.WaitKey();
+                //Cv2.WaitKey();
             }
         }
     }
